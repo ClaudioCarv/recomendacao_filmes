@@ -18,18 +18,22 @@ if st.button('Recomendar'):
                 st.error('Erro ao conectar com a API')
                 st.stop()
 
-        st.success(f"Filme base: {dados['base']}")
         
 
-        if isinstance(dados, dict) and 'error' in dados['recomendacoes']:
-            st.error(dados['error'])
+        if isinstance(dados, dict) and 'error' in dados:
+            st.warning(dados['erro'])
             st.info("💡 Dica: tente nomes em inglês ou mais curtos")
-        else:
-            st.subheader('Filmes recomendados')
-            for item in dados['recomendacoes']:
-                st.markdown(f"""### 🎬 {item['titulo']}""")
-                st.write(f'⭐ Score: {item['score']}')
-                st.progress(float(item['score']))
+            st.stop()
+
+        st.success(f"Filme base: {dados['base']}")
+        st.subheader('Filmes recomendados')
+        
+        for item in dados['recomendacoes']:
+            st.markdown(f"""### 🎬 {item['titulo']}""")
+            st.write(f'⭐ Score: {item['score']}')
+            st.progress(float(item['score']))
+
+        
     else:
         st.warning('Digite um filme!')
 
