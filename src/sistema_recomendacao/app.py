@@ -10,7 +10,7 @@ filme = st.text_input('Digite aqui um filme:', placeholder="Ex: Avengers, Batman
 if st.button('Recomendar'):
     if filme:
         with st.spinner("Buscando recomendações..."):
-            resposta = requests.get(f'http://127.0.0.1:8000/recomendacoes?filme={filme}')
+            resposta = requests.get(f'https://recomendacao-filmes-api.onrender.com/recomendacoes?filme={filme}')
         dados = resposta.json()
         st.success(f"Filme base: {dados['base']}")
         
