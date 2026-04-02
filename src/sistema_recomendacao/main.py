@@ -9,7 +9,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 def recomendar(filme):
     filtro = df[df['original_title'].str.contains(filme, case=False, na=False)].head(1)
     if filtro.empty:
-        return {"erro": 'Não encontrei.'}
+        return {"erro": "Filme não encontrado. Tente outro nome."}
     else:
         indice = filtro.index[0]
         sim = list(enumerate(similaridade[indice]))
